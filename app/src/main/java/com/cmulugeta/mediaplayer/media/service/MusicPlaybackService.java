@@ -1,4 +1,4 @@
-package com.cmulugeta.mediaplayer.service;
+package com.cmulugeta.mediaplayer.media.service;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,9 +9,9 @@ import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 import android.util.Log;
-import com.cmulugeta.mediaplayer.playback.Playback;
-import com.cmulugeta.mediaplayer.playback.PlaybackManager;
-import com.cmulugeta.mediaplayer.playback.QueueManager;
+import com.cmulugeta.mediaplayer.media.playback.Playback;
+import com.cmulugeta.mediaplayer.media.playback.PlaybackManager;
+import com.cmulugeta.mediaplayer.media.playback.QueueManager;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;

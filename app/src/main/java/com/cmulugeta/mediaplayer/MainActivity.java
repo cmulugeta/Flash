@@ -12,7 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import com.cmulugeta.mediaplayer.service.MusicPlaybackService;
+import com.cmulugeta.mediaplayer.media.service.MusicPlaybackService;
 
 public class MainActivity extends AppCompatActivity{
 
