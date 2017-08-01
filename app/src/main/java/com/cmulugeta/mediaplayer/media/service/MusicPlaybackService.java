@@ -7,7 +7,6 @@ import android.support.v4.media.MediaBrowserServiceCompat;
 
 import java.util.ArrayList;
 import java.util.List;
-import android.support.v4.media.MediaMetadataCompat;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 import android.util.Log;
@@ -15,8 +14,6 @@ import android.util.Log;
 import com.cmulugeta.mediaplayer.media.model.MediaProvider;
 import com.cmulugeta.mediaplayer.media.model.Query;
 import com.cmulugeta.mediaplayer.media.playback.Playback;
-import com.cmulugeta.mediaplayer.media.playback.PlaybackManager;
-import com.cmulugeta.mediaplayer.media.playback.QueueManager;
 import com.cmulugeta.mediaplayer.media.utils.MediaHelper;
 
 import static com.cmulugeta.mediaplayer.media.utils.MediaHelper.MEDIA_ID_EMPTY_ROOT;
