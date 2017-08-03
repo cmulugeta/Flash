@@ -1,26 +1,30 @@
 package com.cmulugeta.mediaplayer.media.service;
 
+
 import android.app.Notification;
 import android.app.PendingIntent;
-import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.graphics.Bitmap;
 import android.graphics.Color;
-import android.os.RemoteException;
+import android.service.media.MediaBrowserService;
 import android.support.v4.app.NotificationManagerCompat;
+import android.support.v4.media.MediaBrowserServiceCompat;
 import android.support.v4.media.MediaMetadataCompat;
-import android.support.v4.media.session.MediaControllerCompat;
 import android.support.v4.media.session.MediaSessionCompat;
 import android.support.v4.media.session.PlaybackStateCompat;
 import android.support.v7.app.NotificationCompat;
-import android.util.Log;
+import android.text.TextUtils;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.Priority;
+import com.bumptech.glide.load.resource.drawable.GlideDrawable;
+import com.bumptech.glide.request.animation.GlideAnimation;
+import com.bumptech.glide.request.target.SimpleTarget;
 import com.cmulugeta.mediaplayer.MainActivity;
 import com.cmulugeta.mediaplayer.R;
 
-public class NotificationManager extends BroadcastReceiver {
+public class MusicNotification {
 
     public static final int NOTIFICATION_ID = 412;
 
@@ -35,97 +39,44 @@ public class NotificationManager extends BroadcastReceiver {
     public static final String ACTION_PREV = "com.cmulugeta.player.prev";
     public static final String ACTION_NEXT = "com.cmulugeta.player.next";
 
-    private MediaSessionCompat.Token token;
-    private MediaControllerCompat controllerCompat;
-    private MusicPlaybackService service;
-    private MediaControllerCompat.TransportControls transportControls;
 
     private PlaybackStateCompat playbackState;
-    private MediaMetadataCompat metadata;
-
-    private NotificationManagerCompat notificationManager;
+    private MediaMetadataCompat mediaMetadata;
+    private NotificationManagerCompat manager;
     private boolean isStarted;
+    private MediaSessionCompat.Token token;
+    private MediaBrowserServiceCompat service;
 
-    public NotificationManager(MusicPlaybackService service){
+    public MusicNotification(MediaBrowserServiceCompat service){
         this.service=service;
-        updateSessionToken();
-        notificationManager=NotificationManagerCompat.from(service);
+        this.manager=NotificationManagerCompat.from(service);
+        this.token=service.getSessionToken();
+        manager.cancel(NOTIFICATION_ID);
     }
 
-    private void updateSessionToken() {
-        MediaSessionCompat.Token freshToken = service.getSessionToken();
-        if (token == null && freshToken != null ||
-                token!= null && !token.equals(freshToken)) {
-            if (controllerCompat != null) {
-                controllerCompat.unregisterCallback(callback);
-            }
-            token = freshToken;
-            if (token != null) {
-                try {
-                    controllerCompat = new MediaControllerCompat(service, token);
-                    transportControls=controllerCompat.getTransportControls();
-                    controllerCompat.registerCallback(callback);
-                }catch (RemoteException ex){
-                    ex.printStackTrace();
-                }
-            }
-        }
-    }
-
-    private MediaControllerCompat.Callback callback=new MediaControllerCompat.Callback() {
-        @Override
-        public void onPlaybackStateChanged(PlaybackStateCompat state) {
-            super.onPlaybackStateChanged(state);
-            playbackState=state;
-            if(state.getState()==PlaybackStateCompat.STATE_STOPPED
-                    || state.getState()== PlaybackStateCompat.STATE_NONE){
-                stopNotification();
-            }else{
-               updateNotification();
-            }
-        }
-
-        @Override
-        public void onMetadataChanged(MediaMetadataCompat data) {
-            super.onMetadataChanged(metadata);
-            metadata=data;
+    public void updatePlaybackState(PlaybackStateCompat playbackState){
+        this.playbackState=playbackState;
+        if(playbackState.getState()==PlaybackStateCompat.STATE_STOPPED||
+                playbackState.getState()==PlaybackStateCompat.STATE_NONE){
+            stopNotification();
+        }else{
             updateNotification();
-        }
-
-        @Override
-        public void onSessionDestroyed() {
-            super.onSessionDestroyed();
-            updateSessionToken();
-        }
-    };
-
-    private void stopNotification(){
-        if(isStarted) {
-            controllerCompat.unregisterCallback(callback);
-            notificationManager.cancel(NOTIFICATION_ID);
-            service.unregisterReceiver(this);
-            service.stopForeground(true);
-            isStarted = false;
         }
     }
 
     public void startNotification(){
-        if(!isStarted) {
-            metadata = controllerCompat.getMetadata();
-            playbackState = controllerCompat.getPlaybackState();
-            Notification notification = createNotification();
-            if (notification != null) {
-                controllerCompat.registerCallback(callback);
-                IntentFilter filter = new IntentFilter();
-                filter.addAction(ACTION_NEXT);
-                filter.addAction(ACTION_PAUSE);
-                filter.addAction(ACTION_PLAY);
-                filter.addAction(ACTION_PREV);
-                service.registerReceiver(this, filter);
-                service.startForeground(NOTIFICATION_ID, notification);
+        if(!isStarted){
+            Notification notification=createNotification();
+            if(notification!=null) {
+                service.startForeground(NOTIFICATION_ID,notification);
                 isStarted=true;
             }
         }
+    }
+
+    public void updateMetadata(MediaMetadataCompat metadata){
+        this.mediaMetadata=metadata;
+        updateNotification();
     }
 
     private void updateNotification(){
@@ -134,27 +85,15 @@ public class NotificationManager extends BroadcastReceiver {
         }else {
             Notification notification = createNotification();
             if (notification != null) {
-                notificationManager.notify(NOTIFICATION_ID, notification);
+                manager.notify(NOTIFICATION_ID, notification);
             }
         }
     }
 
-    @Override
-    public void onReceive(Context context, Intent intent) {
-        Log.d(NotificationManager.class.getSimpleName(),"onReceived()");
-        switch (intent.getAction()) {
-            case ACTION_PAUSE:
-                transportControls.pause();
-                break;
-            case ACTION_PLAY:
-                transportControls.play();
-                break;
-            case ACTION_NEXT:
-                transportControls.skipToNext();
-                break;
-            case ACTION_PREV:
-                transportControls.skipToPrevious();
-                break;
+    private void stopNotification(){
+        if(isStarted){
+            isStarted=false;
+            service.stopForeground(true);
         }
     }
 
@@ -164,10 +103,6 @@ public class NotificationManager extends BroadcastReceiver {
                 PLAYER_PENDING_INTENT_ID,
                 startActivityIntent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
-    }
-
-    private static Bitmap largeIcon(Context context){
-        return null;
     }
 
     private NotificationCompat.Action pause(Context context){
@@ -215,21 +150,62 @@ public class NotificationManager extends BroadcastReceiver {
     }
 
     private Notification createNotification(){
-        if(metadata==null||playbackState==null) return null;
+        if(mediaMetadata==null||playbackState==null) return null;
         NotificationCompat.Builder builder=new NotificationCompat.Builder(service);
         builder.setStyle(new  NotificationCompat.MediaStyle()
-            .setMediaSession(token)
-            .setShowActionsInCompactView(1))
+                .setMediaSession(token)
+                .setShowActionsInCompactView(1))
                 .setColor(Color.WHITE)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setUsesChronometer(true)
                 .setSmallIcon(R.drawable.ic_play)
                 .setContentIntent(contentIntent(service))
-                .setContentTitle(metadata.getString(MediaMetadataCompat.METADATA_KEY_ARTIST))
-                .setContentText(metadata.getString(MediaMetadataCompat.METADATA_KEY_TITLE))
-                .addAction(prev(service))
-                .addAction(play(service))
-                .addAction(next(service));
+                .setContentTitle(mediaMetadata.getString(MediaMetadataCompat.METADATA_KEY_ARTIST))
+                .setContentText(mediaMetadata.getString(MediaMetadataCompat.METADATA_KEY_TITLE))
+                .addAction(prev(service));
+        if(playbackState.getState()==PlaybackStateCompat.STATE_PLAYING){
+            builder.addAction(pause(service));
+        }else{
+            builder.addAction(play(service));
+        }
+        builder.addAction(next(service));
+        setNotificationPlaybackState(builder);
+        loadImage(mediaMetadata.getString(MediaMetadataCompat.METADATA_KEY_ALBUM_ART_URI),builder);
         return builder.build();
     }
+
+    private void setNotificationPlaybackState(NotificationCompat.Builder builder) {
+        if (playbackState == null || !isStarted) {
+            service.stopForeground(true);
+            return;
+        }
+        if (playbackState.getState() == PlaybackStateCompat.STATE_PLAYING
+                && playbackState.getPosition() >= 0) {
+            builder.setWhen(System.currentTimeMillis() - playbackState.getPosition())
+                    .setShowWhen(true)
+                    .setUsesChronometer(true);
+        } else {
+            builder.setWhen(0)
+                    .setShowWhen(false)
+                    .setUsesChronometer(false);
+        }
+        builder.setOngoing(playbackState.getState() == PlaybackStateCompat.STATE_PLAYING);
+    }
+
+    private void loadImage(String imageUrl, NotificationCompat.Builder builder){
+        if(!TextUtils.isEmpty(imageUrl)) {
+            Glide.with(service)
+                    .load(imageUrl)
+                    .asBitmap()
+                    .priority(Priority.IMMEDIATE)
+                    .into(new SimpleTarget<Bitmap>() {
+                        @Override
+                        public void onResourceReady(Bitmap resource, GlideAnimation<? super Bitmap> glideAnimation) {
+                            builder.setLargeIcon(resource);
+                            manager.notify(NOTIFICATION_ID, builder.build());
+                        }
+                    });
+        }
+    }
+
 }
