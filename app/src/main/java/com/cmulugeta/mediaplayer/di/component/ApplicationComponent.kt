@@ -4,6 +4,7 @@ import android.content.Context
 import com.cmulugeta.mediaplayer.di.module.ApplicationModule
 import com.cmulugeta.mediaplayer.di.module.DataModule
 import com.cmulugeta.mediaplayer.di.module.InteractorModule
+import com.cmulugeta.mediaplayer.di.module.NetworkModule
 import com.cmulugeta.mediaplayer.domain.Repository
 import com.cmulugeta.mediaplayer.domain.executor.BaseScheduler
 import com.cmulugeta.mediaplayer.domain.interactor.LikeTrack
@@ -17,7 +18,9 @@ import dagger.Component
 
 @Singleton
 @Component(modules = arrayOf(ApplicationModule::class,
-        InteractorModule::class, DataModule::class))
+        InteractorModule::class,
+        DataModule::class,
+        NetworkModule::class))
 interface ApplicationComponent {
     fun inject(activity:BaseActivity)
     fun context(): Context

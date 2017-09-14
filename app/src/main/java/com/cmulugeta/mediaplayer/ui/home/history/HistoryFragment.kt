@@ -7,6 +7,7 @@ import com.cmulugeta.mediaplayer.ui.base.BaseFragment
 import com.cmulugeta.mediaplayer.ui.home.HomeContract
 import com.cmulugeta.mediaplayer.ui.home.HomeContract.Presenter
 import com.cmulugeta.mediaplayer.ui.base.BaseAdapter
+import com.cmulugeta.mediaplayer.di.qualifier.History
 import javax.inject.Inject
 import butterknife.BindView
 
@@ -40,6 +41,7 @@ class HistoryFragment : BaseFragment(), HomeContract.View {
     }
 
     @Inject
+    @History
     override fun attach(presenter: Presenter) {
         this.presenter=presenter
         presenter.attach(this)
