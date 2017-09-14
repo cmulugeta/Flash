@@ -10,6 +10,7 @@ import com.cmulugeta.mediaplayer.domain.interactor.LikeTrack
 import com.cmulugeta.mediaplayer.domain.interactor.LovedTracks
 import com.cmulugeta.mediaplayer.domain.interactor.SearchTracks
 import com.cmulugeta.mediaplayer.domain.interactor.TrackHistory
+import com.cmulugeta.soundcloud.SoundCloudService
 import javax.inject.Singleton
 import dagger.Component
 
@@ -24,4 +25,5 @@ interface ApplicationComponent {
     fun lovedInteractor():LovedTracks
     fun searchInteractor():SearchTracks
     fun historyInteractor():TrackHistory
+    fun service():SoundCloudService
 }
