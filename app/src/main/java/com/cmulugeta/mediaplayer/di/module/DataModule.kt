@@ -1,5 +1,6 @@
 package com.cmulugeta.mediaplayer.di.module
 
+import com.cmulugeta.mediaplayer.data.Filter
 import com.cmulugeta.mediaplayer.data.MusicRepository
 import com.cmulugeta.mediaplayer.data.mapper.Mapper
 import com.cmulugeta.mediaplayer.data.mapper.TrackMapper
@@ -19,4 +20,8 @@ class DataModule {
     @Singleton
     @Provides
     fun mapper(mapper:TrackMapper): Mapper<Track, TrackEntity> =mapper
+
+    @Singleton
+    @Provides
+    fun filter()=Filter()
 }
