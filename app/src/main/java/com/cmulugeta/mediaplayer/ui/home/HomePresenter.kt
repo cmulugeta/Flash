@@ -1,9 +1,11 @@
 package com.cmulugeta.mediaplayer.ui.home
 
+import com.cmulugeta.mediaplayer.di.scope.ViewScope
 import com.cmulugeta.mediaplayer.domain.interactor.SingleInteractor
 import com.cmulugeta.mediaplayer.domain.model.Track
 import com.cmulugeta.mediaplayer.ui.home.HomeContract.*
 
+@ViewScope
 abstract class HomePresenter (val interactor: SingleInteractor<List<Track>, Void>) : Presenter {
 
     private lateinit var view:View
