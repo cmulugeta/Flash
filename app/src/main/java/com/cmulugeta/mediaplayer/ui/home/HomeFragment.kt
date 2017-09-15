@@ -1,7 +1,9 @@
 package com.cmulugeta.mediaplayer.ui.home
 
 import android.os.Bundle
+import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import android.util.Log
 import android.view.View
 import com.cmulugeta.mediaplayer.R
 import com.cmulugeta.mediaplayer.domain.model.Track
@@ -9,6 +11,7 @@ import com.cmulugeta.mediaplayer.ui.base.BaseAdapter
 import com.cmulugeta.mediaplayer.ui.base.BaseFragment
 import com.cmulugeta.mediaplayer.ui.home.HomeContract.Presenter
 import butterknife.BindView
+import java.util.ArrayList
 
 abstract class HomeFragment: BaseFragment(),HomeContract.View{
 
