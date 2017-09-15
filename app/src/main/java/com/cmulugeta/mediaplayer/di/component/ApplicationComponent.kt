@@ -8,7 +8,6 @@ import com.cmulugeta.mediaplayer.di.module.InteractorModule
 import com.cmulugeta.mediaplayer.di.module.NetworkModule
 import com.cmulugeta.mediaplayer.domain.Repository
 import com.cmulugeta.mediaplayer.domain.executor.BaseScheduler
-import com.cmulugeta.mediaplayer.domain.interactor.LikeTrack
 import com.cmulugeta.mediaplayer.domain.interactor.LovedTracks
 import com.cmulugeta.mediaplayer.domain.interactor.SearchTracks
 import com.cmulugeta.mediaplayer.domain.interactor.TrackHistory
@@ -34,7 +33,6 @@ interface ApplicationComponent {
     fun bus(): RxBus
     fun navigator():Navigator
     fun repository():Repository
-    fun likeInteractor():LikeTrack
     fun lovedInteractor():LovedTracks
     fun searchInteractor():SearchTracks
     fun historyInteractor():TrackHistory
