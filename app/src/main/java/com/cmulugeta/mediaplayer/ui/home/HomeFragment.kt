@@ -1,6 +1,8 @@
 package com.cmulugeta.mediaplayer.ui.home
 
+import android.os.Bundle
 import android.support.v7.widget.RecyclerView
+import android.view.View
 import com.cmulugeta.mediaplayer.R
 import com.cmulugeta.mediaplayer.domain.model.Track
 import com.cmulugeta.mediaplayer.ui.base.BaseAdapter
@@ -15,6 +17,18 @@ abstract class HomeFragment: BaseFragment(),HomeContract.View{
 
     @BindView(R.id.list)
     lateinit var list: RecyclerView
+
+    override fun onViewCreated(view: View?, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        if(view!=null){
+            adapter=TrackAdapter(context,rxBus)
+            list.adapter=adapter
+        }
+    }
+
+    override fun show(list: List<Track>) {
+        adapter.set(list.toMutableList())
+    }
 
     override fun error() {
 

@@ -5,6 +5,7 @@ import android.support.design.widget.NavigationView
 import android.support.v4.widget.DrawerLayout
 import butterknife.BindView
 import butterknife.ButterKnife
+import com.cmulugeta.mediaplayer.FitnessSound
 import com.cmulugeta.mediaplayer.R
 import com.cmulugeta.mediaplayer.ui.base.BaseActivity
 import com.cmulugeta.mediaplayer.ui.base.BaseFragment
@@ -42,7 +43,7 @@ class HomeActivity : BaseActivity() {
     }
 
     override fun inject() {
-
+        FitnessSound.app().component().inject(this)
     }
 
     override fun handleEvent(event: Any) {
