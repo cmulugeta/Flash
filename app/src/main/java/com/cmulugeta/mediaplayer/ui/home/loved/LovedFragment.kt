@@ -3,7 +3,6 @@ package com.cmulugeta.mediaplayer.ui.home.loved
 import com.cmulugeta.mediaplayer.FitnessSound
 import com.cmulugeta.mediaplayer.di.component.DaggerViewComponent
 import com.cmulugeta.mediaplayer.di.module.PresenterModule
-import com.cmulugeta.mediaplayer.domain.model.Track
 import com.cmulugeta.mediaplayer.ui.home.HomeContract.Presenter
 import com.cmulugeta.mediaplayer.ui.home.HomeFragment
 import javax.inject.Inject
