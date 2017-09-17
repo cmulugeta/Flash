@@ -3,15 +3,19 @@ package com.cmulugeta.mediaplayer;
 import android.app.Application;
 import com.cmulugeta.mediaplayer.di.component.ApplicationComponent;
 import com.cmulugeta.mediaplayer.di.component.DaggerApplicationComponent;
+import com.cmulugeta.mediaplayer.di.component.DaggerPlaybackComponent;
+import com.cmulugeta.mediaplayer.di.component.PlaybackComponent;
 import com.cmulugeta.mediaplayer.di.module.ApplicationModule;
 import com.cmulugeta.mediaplayer.di.module.DataModule;
 import com.cmulugeta.mediaplayer.di.module.InteractorModule;
+import com.cmulugeta.mediaplayer.di.module.MediaPlayerModule;
 import com.cmulugeta.mediaplayer.di.module.NetworkModule;
 
 public class FitnessSound extends Application {
 
     private static FitnessSound instance;
     private ApplicationComponent component;
+    private PlaybackComponent playbackComponent;
 
     @Override
     public void onCreate() {
@@ -28,6 +32,10 @@ public class FitnessSound extends Application {
                 .interactorModule(new InteractorModule())
                 .networkModule(new NetworkModule(null))
                 .build();
+        playbackComponent= DaggerPlaybackComponent.builder()
+                .applicationComponent(component)
+                .mediaPlayerModule(new MediaPlayerModule())
+                .build();
     }
 
     public static FitnessSound app(){
@@ -36,6 +44,10 @@ public class FitnessSound extends Application {
 
     public ApplicationComponent component(){
         return component;
+    }
+
+    public PlaybackComponent playbackComponent(){
+        return playbackComponent;
     }
 
 }
