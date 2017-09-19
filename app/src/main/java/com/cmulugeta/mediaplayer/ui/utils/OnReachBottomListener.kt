@@ -1,4 +1,4 @@
-package com.cmulugeta.mediaplayer.ui.view
+package com.cmulugeta.mediaplayer.ui.utils
 
 import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.LinearLayoutManager

@@ -1,4 +1,4 @@
-package com.cmulugeta.mediaplayer.ui.view
+package com.cmulugeta.mediaplayer.ui.utils
 
 import android.transition.Transition
 
