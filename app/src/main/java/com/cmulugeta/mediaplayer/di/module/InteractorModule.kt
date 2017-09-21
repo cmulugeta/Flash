@@ -2,9 +2,7 @@ package com.cmulugeta.mediaplayer.di.module
 
 import com.cmulugeta.mediaplayer.domain.Repository
 import com.cmulugeta.mediaplayer.domain.executor.BaseScheduler
-import com.cmulugeta.mediaplayer.domain.interactor.LovedTracks
-import com.cmulugeta.mediaplayer.domain.interactor.SearchTracks
-import com.cmulugeta.mediaplayer.domain.interactor.TrackHistory
+import com.cmulugeta.mediaplayer.domain.interactor.*
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

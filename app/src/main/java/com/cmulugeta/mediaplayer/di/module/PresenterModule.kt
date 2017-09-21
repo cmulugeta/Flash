@@ -9,6 +9,8 @@ import com.cmulugeta.mediaplayer.di.qualifier.History
 import com.cmulugeta.mediaplayer.di.qualifier.Loved
 import com.cmulugeta.mediaplayer.di.scope.ViewScope
 import com.cmulugeta.mediaplayer.domain.interactor.SearchTracks
+import com.cmulugeta.mediaplayer.ui.details.ActionsContract
+import com.cmulugeta.mediaplayer.ui.details.ActionsPresenter
 import com.cmulugeta.mediaplayer.ui.search.SearchContract
 import com.cmulugeta.mediaplayer.ui.search.SearchPresenter
 import dagger.Module
@@ -29,4 +31,8 @@ class PresenterModule{
     @ViewScope
     @Provides
     fun search(interactor:SearchTracks):SearchContract.Presenter= SearchPresenter(interactor)
+
+    @ViewScope
+    @Provides
+    fun aactions(lover:LovedTracks,history: TrackHistory):ActionsContract.Presenter=ActionsPresenter(lover,history,lover,history)
 }
