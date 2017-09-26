@@ -8,6 +8,7 @@ import android.net.wifi.WifiManager
 import android.media.AudioManager
 import android.support.v4.media.MediaMetadataCompat
 import com.cmulugeta.mediaplayer.data.mapper.Mapper
+import com.cmulugeta.mediaplayer.domain.interactor.TrackHistory
 import com.cmulugeta.mediaplayer.domain.model.Track
 import com.cmulugeta.mediaplayer.domain.playback.Playback
 import com.cmulugeta.mediaplayer.playback.MetadataMapper
@@ -34,7 +35,7 @@ class MediaPlayerModule{
 
     @PlaybackScope
     @Provides
-    fun manager(playback:Playback,mapper:Mapper<MediaMetadataCompat,Track>)
-            =PlaybackManager(playback,mapper)
+    fun manager(playback:Playback,mapper:Mapper<MediaMetadataCompat,Track>,history:TrackHistory)
+            =PlaybackManager(playback,history,mapper)
 
 }

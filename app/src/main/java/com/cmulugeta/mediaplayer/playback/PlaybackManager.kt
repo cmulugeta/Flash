@@ -6,6 +6,7 @@ import android.support.v4.media.session.MediaSessionCompat
 import android.support.v4.media.session.PlaybackStateCompat
 import android.util.Log
 import com.cmulugeta.mediaplayer.data.mapper.Mapper
+import com.cmulugeta.mediaplayer.domain.interactor.InsertInteractor
 import com.cmulugeta.mediaplayer.domain.model.Track
 import com.cmulugeta.mediaplayer.domain.playback.Playback
 import com.cmulugeta.mediaplayer.domain.playback.QueueManager
@@ -15,7 +16,9 @@ import com.cmulugeta.mediaplayer.domain.playback.PlaybackScope
 
 @PlaybackScope
 class PlaybackManager @Inject
-constructor(private val playback: Playback, private val mapper: Mapper<MediaMetadataCompat, Track>) : Playback.Callback {
+constructor(private val playback: Playback,
+            private val saveInteractor: InsertInteractor<Track>,
+            private val mapper: Mapper<MediaMetadataCompat, Track>) : Playback.Callback {
 
     private var isRepeat: Boolean = false
     private var isShuffle: Boolean = false
@@ -31,6 +34,7 @@ constructor(private val playback: Playback, private val mapper: Mapper<MediaMeta
 
     fun handlePlayRequest(track: Track?) {
         track?.let {
+            saveInteractor.insert({},{},it)
             playback.play(it.streamUrl)
             updateMetadata()
         }
