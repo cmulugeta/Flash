@@ -2,6 +2,8 @@ package com.cmulugeta.mediaplayer.di.module
 
 import com.cmulugeta.mediaplayer.data.Filter
 import com.cmulugeta.mediaplayer.data.MusicRepository
+import com.cmulugeta.mediaplayer.data.local.MusicDatabase
+import com.cmulugeta.mediaplayer.data.local.TrackHandler
 import com.cmulugeta.mediaplayer.data.mapper.Mapper
 import com.cmulugeta.mediaplayer.data.mapper.TrackMapper
 import com.cmulugeta.mediaplayer.domain.Repository
@@ -24,4 +26,8 @@ class DataModule {
     @Singleton
     @Provides
     fun filter()=Filter()
+
+    @Singleton
+    @Provides
+    fun handler(helper: MusicDatabase)=TrackHandler(helper)
 }
