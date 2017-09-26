@@ -3,7 +3,7 @@ package com.cmulugeta.mediaplayer.domain.playback
 import com.cmulugeta.mediaplayer.domain.model.Track
 import java.util.Collections
 
-class QueueManager(private var tracks: MutableList<Track>, private var index: Int) {
+class QueueManager(private var tracks: MutableList<Track>, var index: Int) {
 
     fun setTracks(tracks: MutableList<Track>) {
         this.tracks = tracks

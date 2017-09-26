@@ -4,6 +4,7 @@ package com.cmulugeta.mediaplayer.data
 import com.cmulugeta.mediaplayer.data.local.TrackHandler
 import com.cmulugeta.mediaplayer.data.mapper.Mapper
 import com.cmulugeta.mediaplayer.domain.Repository
+import com.cmulugeta.mediaplayer.domain.executor.SchedulerProvider
 import com.cmulugeta.mediaplayer.domain.model.Track
 import com.cmulugeta.soundcloud.SoundCloudService
 import com.cmulugeta.soundcloud.model.Page
@@ -16,10 +17,22 @@ import javax.inject.Singleton
 @Singleton
 class MusicRepository @Inject
 constructor(val mapper: Mapper<Track,TrackEntity>, val service:SoundCloudService,
-            val handler: TrackHandler, val filter:Filter):Repository{
+            val handler: TrackHandler, val filter:Filter,scheduler: SchedulerProvider):Repository{
 
     private var page:Page<TrackEntity>?=null
+    private var likeSet=HashSet<String>()
+    private var recentSet=HashSet<String>()
 
+    init {
+        Single.fromCallable({handler.queryHistory()})
+                .subscribeOn(scheduler.io())
+                .observeOn(scheduler.ui())
+                .subscribe({list->convertToSet(recentSet,list)})
+        Single.fromCallable({handler.queryLoved()})
+                .subscribeOn(scheduler.io())
+                .observeOn(scheduler.ui())
+                .subscribe({list->convertToSet(likeSet,list)})
+    }
     override fun fetchHistory():Single<List<Track>>
             = Single.fromCallable({handler.queryHistory()})
 
@@ -73,12 +86,20 @@ constructor(val mapper: Mapper<Track,TrackEntity>, val service:SoundCloudService
     override fun insertRecent(track: Track?):Completable=
             Completable.fromCallable({handler.update(save(track,true))})
 
+    private fun convertToSet(set:HashSet<String>, list:List<Track>){
+        list.forEach({it.id?.let {set.add(it)}})
+    }
+
     private fun save(track:Track?,saved:Boolean)=track?.let {
+        if(!saved) recentSet.remove(track.id)
+        else track.id?.let{recentSet.add(it)}
         it.isSaved=saved
         it
     }
 
     private fun love(track:Track?,liked:Boolean)=track?.let {
+        if(!liked) likeSet.remove(track.id)
+        else track.id?.let{likeSet.add(it)}
         it.isLiked=liked
         it
     }
