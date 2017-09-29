@@ -2,6 +2,7 @@ package com.cmulugeta.mediaplayer.ui.home
 
 import android.os.Bundle
 import android.view.View
+import android.view.ViewTreeObserver
 import com.cmulugeta.mediaplayer.R
 import com.cmulugeta.mediaplayer.domain.model.Track
 import com.cmulugeta.mediaplayer.ui.base.BaseAdapter
@@ -21,6 +22,19 @@ abstract class HomeFragment: BaseFragment(),HomeContract.View{
                     {navigator.actions(activity,it)})
             list.adapter=adapter
         }
+    }
+
+    fun adjustPosition(position:Int){
+        list.scrollToPosition(position)
+        postponeEnterTransition()
+        list.viewTreeObserver.addOnPreDrawListener(object:ViewTreeObserver.OnPreDrawListener{
+            override fun onPreDraw(): Boolean {
+                list.viewTreeObserver.removeOnPreDrawListener(this)
+                list.requestLayout()
+                startPostponedEnterTransition()
+                return true
+            }
+        })
     }
 
     override fun onStart() {

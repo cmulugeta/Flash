@@ -7,7 +7,6 @@ import android.view.View
 import com.cmulugeta.mediaplayer.ui.search.SearchActivity
 import javax.inject.Inject
 import javax.inject.Singleton
-import android.support.v4.app.ActivityOptionsCompat
 import android.support.v4.app.ActivityOptionsCompat.makeSceneTransitionAnimation
 import android.support.v4.util.Pair
 import com.cmulugeta.mediaplayer.ui.details.ActionsActivity
