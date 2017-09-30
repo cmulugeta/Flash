@@ -1,6 +1,7 @@
 package com.cmulugeta.mediaplayer.ui.home.loved
 
 import com.cmulugeta.mediaplayer.FitnessSound
+import com.cmulugeta.mediaplayer.R
 import com.cmulugeta.mediaplayer.di.component.DaggerViewComponent
 import com.cmulugeta.mediaplayer.di.module.PresenterModule
 import com.cmulugeta.mediaplayer.ui.home.HomeContract.Presenter
@@ -15,14 +16,13 @@ class LovedFragment : HomeFragment() {
         presenter.attach(this)
     }
 
-    override fun empty() {
-        super.empty()
-
-    }
     override fun inject() {
         DaggerViewComponent.builder()
                 .applicationComponent(FitnessSound.app().component())
                 .presenterModule(PresenterModule())
                 .build().inject(this)
     }
+
+    override fun alertMessage():String =
+            getString(R.string.loved_alert)
 }

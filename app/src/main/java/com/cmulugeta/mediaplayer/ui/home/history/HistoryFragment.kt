@@ -1,6 +1,7 @@
 package com.cmulugeta.mediaplayer.ui.home.history
 
 import com.cmulugeta.mediaplayer.FitnessSound
+import com.cmulugeta.mediaplayer.R
 import com.cmulugeta.mediaplayer.di.component.DaggerViewComponent
 import com.cmulugeta.mediaplayer.di.module.PresenterModule
 import com.cmulugeta.mediaplayer.ui.home.HomeContract.Presenter
@@ -21,4 +22,7 @@ class HistoryFragment : HomeFragment(){
                 .presenterModule(PresenterModule())
                 .build().inject(this)
     }
+
+    override fun alertMessage():String =
+            getString(R.string.history_alert)
 }
