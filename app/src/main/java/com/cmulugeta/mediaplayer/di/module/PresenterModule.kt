@@ -8,6 +8,7 @@ import com.cmulugeta.mediaplayer.ui.home.loved.LovedPresenter
 import com.cmulugeta.mediaplayer.di.qualifier.History
 import com.cmulugeta.mediaplayer.di.qualifier.Loved
 import com.cmulugeta.mediaplayer.di.scope.ViewScope
+import com.cmulugeta.mediaplayer.domain.interactor.SearchInteractor
 import com.cmulugeta.mediaplayer.domain.interactor.SearchTracks
 import com.cmulugeta.mediaplayer.ui.details.ActionsContract
 import com.cmulugeta.mediaplayer.ui.details.ActionsPresenter
@@ -34,5 +35,5 @@ class PresenterModule{
 
     @ViewScope
     @Provides
-    fun aactions(lover:LovedTracks,history: TrackHistory):ActionsContract.Presenter=ActionsPresenter(lover,history,lover,history)
+    fun actions(lover:LovedTracks,history: TrackHistory):ActionsContract.Presenter=ActionsPresenter(lover,history,lover,history)
 }
