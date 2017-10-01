@@ -1,6 +1,5 @@
 package com.cmulugeta.mediaplayer.ui.home
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
 import android.support.v4.util.Pair
@@ -18,6 +17,7 @@ import com.cmulugeta.mediaplayer.ui.utils.BundleUtils
 import com.cmulugeta.mediaplayer.ui.utils.Constants
 import com.cmulugeta.mediaplayer.ui.utils.Packer
 import kotlinx.android.synthetic.main.adapter_track_item.view.*
+import android.annotation.SuppressLint
 
 class TrackAdapter
 constructor(context: Context, click:(Packer)->Unit, val clickMore:(Bundle)->Unit):BaseAdapter<Track>(context,click) {
@@ -64,6 +64,8 @@ constructor(context: Context, click:(Packer)->Unit, val clickMore:(Bundle)->Unit
         }
     }
 
-    override fun onBindViewHolder(holder: BaseAdapter<Track>.GenericViewHolder, position: Int) =holder.onBindData()
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)=TrackViewHolder(inflate(R.layout.adapter_track_item, parent))
+    override fun onBindViewHolder(holder: BaseAdapter<Track>.GenericViewHolder, position: Int)
+            =holder.onBindData()
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)
+            =TrackViewHolder(inflate(R.layout.adapter_track_item, parent))
 }
