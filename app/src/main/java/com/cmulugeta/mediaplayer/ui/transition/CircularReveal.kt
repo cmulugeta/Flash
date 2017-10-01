@@ -1,4 +1,4 @@
-package com.cmulugeta.mediaplayer.ui.view
+package com.cmulugeta.mediaplayer.ui.transition
 
 import android.animation.Animator
 import android.content.Context
@@ -11,6 +11,7 @@ import android.view.ViewAnimationUtils
 import android.view.ViewGroup
 import com.cmulugeta.mediaplayer.R
 import android.support.annotation.IdRes
+import com.cmulugeta.mediaplayer.ui.utils.PauseLessAnimator
 
 class CircularReveal : Visibility {
 

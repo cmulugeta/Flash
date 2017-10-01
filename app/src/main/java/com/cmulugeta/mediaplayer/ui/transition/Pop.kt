@@ -1,4 +1,4 @@
-package com.cmulugeta.mediaplayer.ui.view
+package com.cmulugeta.mediaplayer.ui.transition
 
 import android.animation.Animator
 import android.animation.ObjectAnimator
