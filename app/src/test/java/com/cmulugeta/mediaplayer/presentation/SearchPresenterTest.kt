@@ -1,4 +1,4 @@
-package com.cmulugeta.mediaplayer.presentation.search
+package com.cmulugeta.mediaplayer.presentation
 
 import com.nhaarman.mockito_kotlin.*
 import com.cmulugeta.mediaplayer.FakeDataProvider
