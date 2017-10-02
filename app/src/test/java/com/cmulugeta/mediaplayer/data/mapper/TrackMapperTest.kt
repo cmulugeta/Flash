@@ -1,4 +1,4 @@
-package com.cmulugeta.mediaplayer.mapper
+package com.cmulugeta.mediaplayer.data.mapper
 
 import com.cmulugeta.mediaplayer.FakeDataProvider
 import com.cmulugeta.mediaplayer.data.mapper.TrackMapper

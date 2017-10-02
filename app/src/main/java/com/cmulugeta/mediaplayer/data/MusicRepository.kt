@@ -4,6 +4,7 @@ package com.cmulugeta.mediaplayer.data
 import com.cmulugeta.mediaplayer.data.local.TrackHandler
 import com.cmulugeta.mediaplayer.data.mapper.Mapper
 import com.cmulugeta.mediaplayer.domain.Repository
+import com.cmulugeta.mediaplayer.domain.executor.BaseScheduler
 import com.cmulugeta.mediaplayer.domain.executor.SchedulerProvider
 import com.cmulugeta.mediaplayer.domain.model.Track
 import com.cmulugeta.soundcloud.SoundCloudService
@@ -17,7 +18,7 @@ import javax.inject.Singleton
 @Singleton
 class MusicRepository @Inject
 constructor(val mapper: Mapper<Track,TrackEntity>, val service:SoundCloudService,
-            val handler: TrackHandler, val filter:Filter,scheduler: SchedulerProvider):Repository{
+            val handler: TrackHandler, val filter:Filter,scheduler: BaseScheduler):Repository{
 
     private var page:Page<TrackEntity>?=null
     private var likeSet=HashSet<String>()
