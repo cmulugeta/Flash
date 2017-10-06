@@ -5,7 +5,7 @@ import android.support.v4.util.Pair
 import android.view.Menu
 import android.view.MenuItem
 import butterknife.ButterKnife
-import com.cmulugeta.mediaplayer.FitnessSound
+import com.cmulugeta.mediaplayer.FlashApp
 import com.cmulugeta.mediaplayer.R
 import com.cmulugeta.mediaplayer.ui.base.BaseActivity
 import com.cmulugeta.mediaplayer.ui.home.history.HistoryFragment
@@ -75,5 +75,5 @@ class HomeActivity : BaseActivity() {
         return toggle.onOptionsItemSelected(item)
     }
 
-    override fun inject()=FitnessSound.app().component().inject(this)
+    override fun inject()= FlashApp.app().component().inject(this)
 }

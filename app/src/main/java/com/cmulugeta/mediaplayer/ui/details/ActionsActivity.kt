@@ -9,7 +9,7 @@ import android.view.animation.OvershootInterpolator
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.google.gson.reflect.TypeToken
-import com.cmulugeta.mediaplayer.FitnessSound
+import com.cmulugeta.mediaplayer.FlashApp
 import com.cmulugeta.mediaplayer.R
 import com.cmulugeta.mediaplayer.di.component.DaggerViewComponent
 import com.cmulugeta.mediaplayer.di.module.PresenterModule
@@ -116,7 +116,7 @@ class ActionsActivity:BaseActivity(),ActionsContract.View{
 
     override fun inject()=DaggerViewComponent.builder()
             .presenterModule(PresenterModule())
-            .applicationComponent(FitnessSound.app().component())
+            .applicationComponent(FlashApp.app().component())
             .build().inject(this)
 
     @Inject

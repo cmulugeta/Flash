@@ -1,6 +1,6 @@
 package com.cmulugeta.mediaplayer.ui.home.loved
 
-import com.cmulugeta.mediaplayer.FitnessSound
+import com.cmulugeta.mediaplayer.FlashApp
 import com.cmulugeta.mediaplayer.R
 import com.cmulugeta.mediaplayer.di.component.DaggerViewComponent
 import com.cmulugeta.mediaplayer.di.module.PresenterModule
@@ -18,7 +18,7 @@ class LovedFragment : HomeFragment() {
 
     override fun inject() {
         DaggerViewComponent.builder()
-                .applicationComponent(FitnessSound.app().component())
+                .applicationComponent(FlashApp.app().component())
                 .presenterModule(PresenterModule())
                 .build().inject(this)
     }

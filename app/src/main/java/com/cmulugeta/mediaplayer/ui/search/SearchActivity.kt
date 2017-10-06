@@ -5,7 +5,7 @@ import android.content.Context
 import android.os.Bundle
 import android.text.InputType
 import android.view.View
-import com.cmulugeta.mediaplayer.FitnessSound
+import com.cmulugeta.mediaplayer.FlashApp
 import com.cmulugeta.mediaplayer.R
 import com.cmulugeta.mediaplayer.di.component.DaggerViewComponent
 import com.cmulugeta.mediaplayer.di.module.PresenterModule
@@ -120,7 +120,7 @@ class SearchActivity:BaseActivity(), SearchContract.View{
     override fun inject(){
         DaggerViewComponent.builder()
                 .presenterModule(PresenterModule())
-                .applicationComponent(FitnessSound.app().component())
+                .applicationComponent(FlashApp.app().component())
                 .build().inject(this)
     }
 
