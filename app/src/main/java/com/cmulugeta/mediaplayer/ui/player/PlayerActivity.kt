@@ -41,6 +41,7 @@ import com.cmulugeta.mediaplayer.domain.model.Track
 import com.cmulugeta.mediaplayer.ui.base.Navigator
 import javax.inject.Inject
 import butterknife.OnClick
+import com.cmulugeta.mediaplayer.ui.utils.executeIf
 
 class PlayerActivity:AppCompatActivity(){
 
