@@ -14,7 +14,6 @@ import com.cmulugeta.mediaplayer.domain.interactor.TrackHistory
 import com.cmulugeta.mediaplayer.domain.model.Track
 import com.cmulugeta.mediaplayer.ui.base.BaseActivity
 import com.cmulugeta.mediaplayer.ui.base.Navigator
-import com.cmulugeta.mediaplayer.ui.base.RxBus
 import com.cmulugeta.soundcloud.SoundCloudService
 import com.cmulugeta.soundcloud.model.TrackEntity
 import javax.inject.Singleton
@@ -30,7 +29,6 @@ interface ApplicationComponent {
     fun context(): Context
     fun scheduler():BaseScheduler
     fun mapper(): Mapper<Track, TrackEntity>
-    fun bus(): RxBus
     fun navigator():Navigator
     fun repository():Repository
     fun lovedInteractor():LovedTracks

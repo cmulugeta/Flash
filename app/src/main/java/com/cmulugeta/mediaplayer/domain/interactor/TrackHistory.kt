@@ -3,18 +3,16 @@ package com.cmulugeta.mediaplayer.domain.interactor
 import com.cmulugeta.mediaplayer.domain.Repository
 import com.cmulugeta.mediaplayer.domain.executor.BaseScheduler
 import com.cmulugeta.mediaplayer.domain.model.Track
-import io.reactivex.Single
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
 open class TrackHistory @Inject
-constructor(val repository: Repository, scheduler: BaseScheduler) :InsertInteractor<Track>,
-        ClearInteractor<Track>, SingleInteractor<List<Track>,Void?>(scheduler){
+constructor(val repository: Repository, scheduler: BaseScheduler)
+        :InsertInteractor<Track>, ClearInteractor<Track>,
+        SingleInteractor<List<Track>,Void?>(scheduler){
 
-    public override fun buildObservable(params: Void?): Single<List<Track>> {
-        return repository.fetchHistory()
-    }
+    public override fun buildObservable(params: Void?)=repository.fetchHistory()
 
     override fun clear(complete: () -> Unit, error: (Throwable) -> Unit) {
         repository.clearHistory()

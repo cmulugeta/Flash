@@ -12,7 +12,6 @@ import android.support.v4.util.Pair
 import com.cmulugeta.mediaplayer.R
 import com.cmulugeta.mediaplayer.ui.details.ActionsActivity
 import com.cmulugeta.mediaplayer.ui.player.PlayerActivity
-import com.cmulugeta.mediaplayer.ui.utils.Packer
 
 
 @Singleton
