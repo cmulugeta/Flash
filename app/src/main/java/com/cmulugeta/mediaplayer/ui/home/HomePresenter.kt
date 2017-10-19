@@ -5,7 +5,7 @@ import com.cmulugeta.mediaplayer.domain.model.Track
 import com.cmulugeta.mediaplayer.ui.home.HomeContract.*
 import com.cmulugeta.mediaplayer.domain.interactor.ClearInteractor
 import com.cmulugeta.mediaplayer.di.scope.ViewScope
-import com.cmulugeta.mediaplayer.ui.utils.executeIf
+import com.cmulugeta.mediaplayer.then
 
 @ViewScope
 abstract class HomePresenter
@@ -21,7 +21,7 @@ constructor(private val interactor: SingleInteractor<List<Track>, Void>,
 
     private fun onSuccess(result:List<Track>?){
         view.setLoading(false)
-        result?.executeIf(result.isEmpty(),view::empty,{view.show(result)})
+        result?.isEmpty()?.then(view::empty,{view.show(result)})
     }
 
     protected fun onError(error:Throwable){

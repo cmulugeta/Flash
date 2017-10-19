@@ -17,6 +17,7 @@ import com.cmulugeta.mediaplayer.domain.playback.QueueManager
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 import com.cmulugeta.mediaplayer.domain.playback.PlaybackScope
+import com.cmulugeta.mediaplayer.then
 
 @PlaybackScope
 class PlaybackManager @Inject
@@ -118,8 +119,7 @@ constructor(val playback: Playback,
         queueManager?.let {
             val position = TimeUnit.MILLISECONDS.toSeconds(playback.position())
             playback.invalidateCurrent()
-            handlePlayRequest(if(position > 5)
-                it.current() else it.previous())
+            handlePlayRequest((position > 5).then(it.current(),it.previous()))
         }
     }
 
