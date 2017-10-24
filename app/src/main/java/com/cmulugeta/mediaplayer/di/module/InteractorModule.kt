@@ -1,5 +1,6 @@
 package com.cmulugeta.mediaplayer.di.module
 
+import com.cmulugeta.mediaplayer.domain.Repository
 import com.cmulugeta.mediaplayer.domain.executor.BaseScheduler
 import com.cmulugeta.mediaplayer.domain.interactor.*
 import dagger.Module
@@ -10,7 +11,7 @@ import javax.inject.Singleton
 class InteractorModule{
     @Singleton
     @Provides
-    fun lovedInteractor(repository:Repository, scheduler: BaseScheduler) =LovedTracks(repository,scheduler)
+    fun modifyInteractor(repository: Repository, scheduler: BaseScheduler)=ModifyTracks(repository,scheduler)
 
     @Singleton
     @Provides
@@ -18,5 +19,5 @@ class InteractorModule{
 
     @Singleton
     @Provides
-    fun historyInteractor(repository:Repository, scheduler: BaseScheduler) =TrackHistory(repository,scheduler)
+    fun tracksInteractor(repository:Repository, scheduler: BaseScheduler) =GetTracks(repository,scheduler)
 }

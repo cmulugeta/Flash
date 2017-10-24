@@ -1,10 +1,14 @@
 package com.cmulugeta.mediaplayer.ui.home.loved
 
-import com.cmulugeta.mediaplayer.domain.interactor.LovedTracks
 import com.cmulugeta.mediaplayer.ui.home.HomePresenter
 import javax.inject.Inject
 import com.cmulugeta.mediaplayer.di.scope.ViewScope
+import com.cmulugeta.mediaplayer.domain.interactor.ClearInteractor
+import com.cmulugeta.mediaplayer.domain.interactor.SingleInteractor
+import com.cmulugeta.mediaplayer.domain.model.TrackType
 
 @ViewScope
 class LovedPresenter @Inject
-constructor(interactor:LovedTracks) : HomePresenter(interactor,interactor)
+constructor(interactor: SingleInteractor<TrackType>, clear: ClearInteractor): HomePresenter(interactor,clear) {
+    override fun type() = TrackType.FAVORITE
+}

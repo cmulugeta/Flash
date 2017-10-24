@@ -6,6 +6,7 @@ import com.cmulugeta.mediaplayer.data.local.MusicDatabase
 import com.cmulugeta.mediaplayer.data.local.TrackHandler
 import com.cmulugeta.mediaplayer.data.mapper.Mapper
 import com.cmulugeta.mediaplayer.data.mapper.TrackMapper
+import com.cmulugeta.mediaplayer.domain.Repository
 import com.cmulugeta.mediaplayer.domain.model.Track
 import com.cmulugeta.soundcloud.model.TrackEntity
 import dagger.Module
