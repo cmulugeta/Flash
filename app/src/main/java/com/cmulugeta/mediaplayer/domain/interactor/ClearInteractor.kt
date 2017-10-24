@@ -1,6 +1,10 @@
 package com.cmulugeta.mediaplayer.domain.interactor
 
-interface ClearInteractor<in Params> {
-    fun clear(complete: () -> Unit, error: (Throwable) -> Unit)
-    fun remove(complete: () -> Unit, error: (Throwable) -> Unit, params: Params)
+import com.cmulugeta.mediaplayer.domain.model.TrackType
+import com.cmulugeta.mediaplayer.domain.interactor.params.ModifyParam
+import com.cmulugeta.mediaplayer.domain.interactor.params.SimpleConsumer
+
+interface ClearInteractor{
+    fun clearAll(consumer: SimpleConsumer,type:TrackType)
+    fun remove(consumer: SimpleConsumer,param: ModifyParam)
 }

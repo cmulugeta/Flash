@@ -6,7 +6,6 @@ import com.cmulugeta.mediaplayer.di.module.ApplicationModule
 import com.cmulugeta.mediaplayer.di.module.DataModule
 import com.cmulugeta.mediaplayer.di.module.InteractorModule
 import com.cmulugeta.mediaplayer.di.module.NetworkModule
-import com.cmulugeta.mediaplayer.domain.Repository
 import com.cmulugeta.mediaplayer.domain.executor.BaseScheduler
 import com.cmulugeta.mediaplayer.domain.interactor.LovedTracks
 import com.cmulugeta.mediaplayer.domain.interactor.SearchTracks
