@@ -4,7 +4,6 @@ import com.cmulugeta.mediaplayer.domain.Repository
 import com.cmulugeta.mediaplayer.domain.executor.BaseScheduler
 import com.cmulugeta.mediaplayer.domain.model.TrackType
 import com.cmulugeta.mediaplayer.domain.interactor.params.ModifyParam
-import com.cmulugeta.mediaplayer.domain.interactor.params.SimpleConsumer
 import javax.inject.Inject
 import javax.inject.Singleton
 
