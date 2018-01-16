@@ -1,21 +1,21 @@
 package com.cmulugeta.mediaplayer.ui.search
 
-import com.cmulugeta.mediaplayer.domain.model.Track
-import com.cmulugeta.mediaplayer.ui.base.BasePresenter
-import com.cmulugeta.mediaplayer.ui.base.BaseView
+import android.support.annotation.StringRes
 
 interface SearchContract {
-  interface View : BaseView<Presenter> {
-    fun setLoading(isLoading: Boolean)
-    fun show(list: List<Track>)
-    fun append(list: List<Track>)
+  interface View<in T> {
+    fun showLoading()
+    fun hideLoading()
+    fun show(list: List<T>)
+    fun append(list: List<T>)
+    fun showMessage(@StringRes id: Int)
     fun error()
     fun empty()
   }
 
-  interface Presenter : BasePresenter {
+  interface Presenter<out T> {
     fun query(query: String?)
     fun more()
-    fun attachView(view: View)
+    fun attachView(view: View<T>)
   }
 }
