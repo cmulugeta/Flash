@@ -1,6 +1,6 @@
 package com.cmulugeta.mediaplayer.ui.home.history
 
-import com.cmulugeta.mediaplayer.FlashApp
+import com.cmulugeta.mediaplayer.App
 import com.cmulugeta.mediaplayer.R
 import com.cmulugeta.mediaplayer.di.component.DaggerViewComponent
 import com.cmulugeta.mediaplayer.di.module.PresenterModule
@@ -18,7 +18,7 @@ class HistoryFragment : HomeFragment(){
 
     override fun inject() {
         DaggerViewComponent.builder()
-                .applicationComponent(FlashApp.app().component())
+                .applicationComponent(App.component)
                 .presenterModule(PresenterModule())
                 .build().inject(this)
     }

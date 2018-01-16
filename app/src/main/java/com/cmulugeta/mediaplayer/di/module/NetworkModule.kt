@@ -1,7 +1,7 @@
 package com.cmulugeta.mediaplayer.di.module
 
 import android.content.Context
-import com.cmulugeta.mediaplayer.Config
+import com.cmulugeta.mediaplayer.CLIENT_ID
 import com.cmulugeta.soundcloud.SoundCloud
 import com.cmulugeta.soundcloud.SoundCloudService
 import com.cmulugeta.soundcloud.model.Token
@@ -10,11 +10,11 @@ import dagger.Provides
 import javax.inject.Singleton
 
 @Module
-class NetworkModule constructor(val token:Token?){
-    @Singleton
-    @Provides
-    internal fun service(context:Context):SoundCloudService=
-            SoundCloud.create(Config.CLIENT_ID)
-            .appendToken(token)
-            .createService(context)
+class NetworkModule constructor(val token: Token?) {
+  @Singleton
+  @Provides
+  internal fun service(context: Context): SoundCloudService =
+      SoundCloud.create(CLIENT_ID)
+          .appendToken(token)
+          .createService(context)
 }
