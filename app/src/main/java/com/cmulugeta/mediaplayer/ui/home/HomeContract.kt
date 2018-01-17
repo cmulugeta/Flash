@@ -1,6 +1,7 @@
 package com.cmulugeta.mediaplayer.ui.home
 
 import com.cmulugeta.mediaplayer.domain.model.Track
+import com.cmulugeta.mediaplayer.ui.base.BasePresenter
 import com.cmulugeta.mediaplayer.ui.base.BaseView
 
 interface HomeContract {
@@ -13,7 +14,7 @@ interface HomeContract {
     fun setLoading(isLoading: Boolean)
   }
 
-  interface Presenter {
+  interface Presenter : BasePresenter {
     fun start()
     fun remove(track: Track)
     fun clear()

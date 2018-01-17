@@ -9,7 +9,7 @@ import com.cmulugeta.mediaplayer.ui.base.Navigator
 import com.cmulugeta.mediaplayer.ui.home.TrackAdapter
 import javax.inject.Inject
 
-class TrackFragment : SearchFragment<Track>(){
+class TrackFragment : SearchFragment<Track>() {
   @Inject lateinit var navigator: Navigator
 
   override val adapter: BaseAdapter<Track> by lazy(LazyThreadSafetyMode.NONE) {

@@ -1,6 +1,7 @@
 package com.cmulugeta.mediaplayer.ui.details
 
 import com.cmulugeta.mediaplayer.domain.model.Track
+import com.cmulugeta.mediaplayer.ui.base.BasePresenter
 import com.cmulugeta.mediaplayer.ui.base.BaseView
 
 interface ActionsContract {
@@ -12,7 +13,7 @@ interface ActionsContract {
     fun error()
   }
 
-  interface Presenter {
+  interface Presenter : BasePresenter {
     fun like(track: Track)
     fun dislike(track: Track)
     fun remove(track: Track)
