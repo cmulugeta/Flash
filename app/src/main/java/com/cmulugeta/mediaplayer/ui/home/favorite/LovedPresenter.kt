@@ -1,4 +1,4 @@
-package com.cmulugeta.mediaplayer.ui.home.loved
+package com.cmulugeta.mediaplayer.ui.home.favorite
 
 import com.cmulugeta.mediaplayer.ui.home.HomePresenter
 import javax.inject.Inject

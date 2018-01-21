@@ -2,7 +2,7 @@ package com.cmulugeta.mediaplayer.di.component
 
 import com.cmulugeta.mediaplayer.di.module.PresenterModule
 import com.cmulugeta.mediaplayer.ui.home.history.HistoryFragment
-import com.cmulugeta.mediaplayer.ui.home.loved.LovedFragment
+import com.cmulugeta.mediaplayer.ui.home.favorite.LovedFragment
 import com.cmulugeta.mediaplayer.ui.search.SearchActivity
 import com.cmulugeta.mediaplayer.ui.details.ActionsActivity
 import com.cmulugeta.mediaplayer.ui.search.TrackFragment

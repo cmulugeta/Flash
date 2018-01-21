@@ -7,7 +7,7 @@ import com.cmulugeta.mediaplayer.domain.interactor.TrackHistory
 import com.cmulugeta.mediaplayer.domain.model.Track
 import com.cmulugeta.mediaplayer.ui.home.HomeContract
 import com.cmulugeta.mediaplayer.ui.home.history.HistoryPresenter
-import com.cmulugeta.mediaplayer.ui.home.loved.LovedPresenter
+import com.cmulugeta.mediaplayer.ui.home.favorite.LovedPresenter
 import org.mockito.junit.MockitoJUnitRunner
 import org.junit.runner.RunWith
 import org.mockito.InjectMocks

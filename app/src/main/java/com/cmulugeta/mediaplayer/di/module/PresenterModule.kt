@@ -2,7 +2,7 @@ package com.cmulugeta.mediaplayer.di.module
 
 import com.cmulugeta.mediaplayer.ui.home.HomeContract
 import com.cmulugeta.mediaplayer.ui.home.history.HistoryPresenter
-import com.cmulugeta.mediaplayer.ui.home.loved.LovedPresenter
+import com.cmulugeta.mediaplayer.ui.home.favorite.LovedPresenter
 import com.cmulugeta.mediaplayer.domain.interactor.*
 import com.cmulugeta.mediaplayer.ui.details.ActionsContract
 import com.cmulugeta.mediaplayer.ui.details.ActionsPresenter
