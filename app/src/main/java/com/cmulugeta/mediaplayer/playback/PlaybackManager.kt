@@ -11,7 +11,7 @@ import com.bumptech.glide.request.animation.GlideAnimation
 import com.bumptech.glide.request.target.SimpleTarget
 import com.cmulugeta.mediaplayer.data.mapper.Mapper
 import com.cmulugeta.mediaplayer.domain.interactor.InsertInteractor
-import com.cmulugeta.mediaplayer.domain.interactor.params.ModifyParam
+import com.cmulugeta.mediaplayer.domain.interactor.params.ModifyRequest
 import com.cmulugeta.mediaplayer.domain.model.Track
 import com.cmulugeta.mediaplayer.domain.model.TrackType
 import com.cmulugeta.mediaplayer.domain.playback.Playback
@@ -42,7 +42,7 @@ constructor(val playback: Playback,
 
   fun handlePlayRequest(track: Track?) {
     track?.let {
-      saveInteractor.insert({}, {}, ModifyParam(it, TrackType.HISTORY))
+      saveInteractor.insert({}, {}, ModifyRequest(TrackType.HISTORY, it))
       playback.play(it.streamUrl)
       updateMetadata()
     }

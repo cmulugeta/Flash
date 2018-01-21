@@ -7,10 +7,11 @@ import com.cmulugeta.mediaplayer.domain.interactor.*
 import com.cmulugeta.mediaplayer.ui.details.ActionsContract
 import com.cmulugeta.mediaplayer.ui.details.ActionsPresenter
 import com.cmulugeta.mediaplayer.ui.search.SearchContract
-import com.cmulugeta.mediaplayer.ui.search.SearchPresenter
 import com.cmulugeta.mediaplayer.di.qualifier.History
 import com.cmulugeta.mediaplayer.di.qualifier.Loved
 import com.cmulugeta.mediaplayer.di.scope.ViewScope
+import com.cmulugeta.mediaplayer.domain.model.Track
+import com.cmulugeta.mediaplayer.ui.search.TrackPresenter
 import dagger.Module
 import dagger.Provides
 
@@ -32,9 +33,9 @@ class PresenterModule {
 
   @ViewScope
   @Provides
-  internal fun search(search: SearchTracks)
-      : SearchContract.Presenter
-      = SearchPresenter(search)
+  internal fun search(interactor: SearchTracks)
+      : SearchContract.Presenter<Track>
+      = TrackPresenter(interactor)
 
   @ViewScope
   @Provides
