@@ -1,6 +1,8 @@
 package com.cmulugeta.mediaplayer
 
+import android.support.v4.widget.SwipeRefreshLayout
 import android.support.v7.widget.RecyclerView
+import com.cmulugeta.kotlin_extensions.info
 import com.cmulugeta.mediaplayer.ui.utils.OnReachBottomListener
 import io.reactivex.Single
 
@@ -30,8 +32,8 @@ infix inline fun <T, Type> Type?.notNullThen(source: (Type) -> T) = if (this != 
 
 fun <T> wrongArgument() = Single.error<T>(IllegalArgumentException())
 
-inline fun RecyclerView.addReachBottomListener(crossinline callback: () -> Unit) {
-  addOnScrollListener(object : OnReachBottomListener(layoutManager) {
+inline fun RecyclerView.addReachBottomListener(refresher:SwipeRefreshLayout?=null, crossinline callback: () -> Unit) {
+  addOnScrollListener(object : OnReachBottomListener(layoutManager, refresher) {
     override fun onLoadMore() {
       callback()
     }
