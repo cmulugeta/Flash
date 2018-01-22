@@ -1,7 +1,6 @@
 package com.cmulugeta.mediaplayer.ui.search
 
 import com.cmulugeta.kotlin_extensions.error
-import com.cmulugeta.kotlin_extensions.info
 import com.cmulugeta.mediaplayer.di.scope.ViewScope
 import com.cmulugeta.mediaplayer.domain.interactor.SingleInteractor
 import com.cmulugeta.mediaplayer.domain.model.SearchPage
@@ -28,7 +27,6 @@ class TrackPresenter @Inject constructor(val interactor: SingleInteractor<Search
 
   private fun executeQuery() {
     view.showLoading()
-    info(page.current)
     interactor.execute(this::onSuccess, this::onError, page)
   }
 
