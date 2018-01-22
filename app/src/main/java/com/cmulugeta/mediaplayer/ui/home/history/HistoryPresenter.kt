@@ -11,5 +11,5 @@ import com.cmulugeta.mediaplayer.domain.model.TrackType
 @ViewScope
 class HistoryPresenter @Inject
 constructor(interactor: SingleInteractor<TrackType, List<Track>>, clear: ClearInteractor): HomePresenter(interactor,clear) {
-    override fun type() = TrackType.HISTORY
+    override fun type() = TrackType.History
 }

@@ -1,15 +1,14 @@
 package com.cmulugeta.mediaplayer.ui.details
 
 import com.cmulugeta.mediaplayer.domain.model.Track
+import com.cmulugeta.mediaplayer.domain.model.TrackType
 import com.cmulugeta.mediaplayer.ui.base.BasePresenter
 import com.cmulugeta.mediaplayer.ui.base.BaseView
 
 interface ActionsContract {
   interface View : BaseView<Presenter> {
-    fun added()
-    fun liked()
-    fun disliked()
-    fun removed()
+    fun showAdded(type:TrackType)
+    fun showRemoved(type:TrackType)
     fun error()
   }
 

@@ -1,5 +1,6 @@
 package com.cmulugeta.mediaplayer.domain.model
 
-enum class TrackType {
-  HISTORY, FAVORITE
+sealed class TrackType {
+  object Favorite : TrackType()
+  object History : TrackType()
 }
