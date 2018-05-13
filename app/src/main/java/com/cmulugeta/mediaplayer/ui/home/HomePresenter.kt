@@ -3,14 +3,13 @@ package com.cmulugeta.mediaplayer.ui.home
 import com.cmulugeta.mediaplayer.domain.model.Track
 import com.cmulugeta.mediaplayer.ui.home.HomeContract.*
 import com.cmulugeta.mediaplayer.domain.interactor.ClearInteractor
-import com.cmulugeta.mediaplayer.di.scope.ViewScope
 import com.cmulugeta.mediaplayer.domain.interactor.SingleInteractor
 import com.cmulugeta.mediaplayer.domain.interactor.params.ModifyRequest
 import com.cmulugeta.mediaplayer.domain.model.TrackType
 
-@ViewScope
-abstract class HomePresenter constructor(val interactor: SingleInteractor<TrackType, List<Track>>,
-                                         val clear: ClearInteractor) : Presenter {
+abstract class HomePresenter (
+    val interactor: SingleInteractor<TrackType, List<Track>>,
+    val clear: ClearInteractor) : Presenter {
 
   protected lateinit var view: View
 

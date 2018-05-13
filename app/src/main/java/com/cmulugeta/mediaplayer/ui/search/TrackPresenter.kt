@@ -1,14 +1,12 @@
 package com.cmulugeta.mediaplayer.ui.search
 
 import com.cmulugeta.kotlin_extensions.error
-import com.cmulugeta.mediaplayer.di.scope.ViewScope
 import com.cmulugeta.mediaplayer.domain.interactor.SingleInteractor
 import com.cmulugeta.mediaplayer.domain.model.SearchPage
 import com.cmulugeta.mediaplayer.domain.model.Track
-import javax.inject.Inject
 
-@ViewScope
-class TrackPresenter @Inject constructor(val interactor: SingleInteractor<SearchPage, List<Track>>)
+class TrackPresenter (
+    val interactor: SingleInteractor<SearchPage, List<Track>>)
   : SearchContract.Presenter<Track> {
 
   private val page = SearchPage(0)

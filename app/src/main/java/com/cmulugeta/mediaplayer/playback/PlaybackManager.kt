@@ -9,6 +9,7 @@ import android.support.v4.media.session.PlaybackStateCompat
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.animation.GlideAnimation
 import com.bumptech.glide.request.target.SimpleTarget
+import com.cmulugeta.kotlin_extensions.info
 import com.cmulugeta.mediaplayer.data.mapper.Mapper
 import com.cmulugeta.mediaplayer.domain.interactor.InsertInteractor
 import com.cmulugeta.mediaplayer.domain.interactor.params.ModifyRequest
@@ -17,16 +18,14 @@ import com.cmulugeta.mediaplayer.domain.model.TrackType
 import com.cmulugeta.mediaplayer.domain.playback.Playback
 import com.cmulugeta.mediaplayer.domain.playback.QueueManager
 import java.util.concurrent.TimeUnit
-import javax.inject.Inject
-import com.cmulugeta.mediaplayer.domain.playback.PlaybackScope
 import com.cmulugeta.mediaplayer.then
 
-@PlaybackScope
-class PlaybackManager @Inject
-constructor(val playback: Playback,
-            val context: Context,
-            val saveInteractor: InsertInteractor,
-            val mapper: Mapper<MediaMetadataCompat, Track>) : Playback.Callback {
+class PlaybackManager (
+    val playback: Playback,
+    val context: Context,
+    val saveInteractor: InsertInteractor,
+    val mapper: Mapper<MediaMetadataCompat, Track>
+) : Playback.Callback {
 
   private var isRepeat: Boolean = false
   private var isShuffle: Boolean = false
@@ -43,6 +42,7 @@ constructor(val playback: Playback,
   fun handlePlayRequest(track: Track?) {
     track?.let {
       saveInteractor.insert({}, {}, ModifyRequest(TrackType.History, it))
+      info(track.streamUrl)
       playback.play(it.streamUrl)
       updateMetadata()
     }
@@ -91,7 +91,7 @@ constructor(val playback: Playback,
     updateListener?.onMetadataRetrieveError()
   }
 
-  override fun onCompletetion() {
+  override fun onCompleted() {
     queueManager?.let {
       val track = if (isRepeat) it.current() else it.next()
       if (isRepeat) {

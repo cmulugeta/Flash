@@ -5,11 +5,9 @@ import com.cmulugeta.mediaplayer.ui.details.ActionsContract.Presenter
 import com.cmulugeta.mediaplayer.domain.interactor.ModifyInteractor
 import com.cmulugeta.mediaplayer.domain.interactor.params.ModifyRequest
 import com.cmulugeta.mediaplayer.domain.model.TrackType
-import javax.inject.Inject
-import com.cmulugeta.mediaplayer.di.scope.ViewScope
 
-@ViewScope
-class ActionsPresenter @Inject constructor(private val modifier: ModifyInteractor) : Presenter {
+class ActionsPresenter (
+    private val modifier: ModifyInteractor) : Presenter {
 
   private lateinit var view: ActionsContract.View
 

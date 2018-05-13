@@ -6,12 +6,11 @@ import com.cmulugeta.mediaplayer.domain.executor.BaseScheduler
 import com.cmulugeta.mediaplayer.domain.model.SearchPage
 import com.cmulugeta.mediaplayer.domain.model.Track
 import com.cmulugeta.mediaplayer.wrongArgument
-import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
-class SearchTracks @Inject constructor(val repository: Repository, scheduler: BaseScheduler)
-  : SingleInteractor<SearchPage, List<Track>>(scheduler) {
+class SearchTracks (
+    val repository: Repository,
+    scheduler: BaseScheduler
+) : SingleInteractor<SearchPage, List<Track>>(scheduler) {
 
   override fun buildSingle(request: SearchPage?)
       = request then (repository::search) ?: wrongArgument()

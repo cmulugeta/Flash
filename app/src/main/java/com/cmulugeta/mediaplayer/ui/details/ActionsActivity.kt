@@ -7,8 +7,6 @@ import android.view.animation.OvershootInterpolator
 import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.cmulugeta.mediaplayer.R
-import com.cmulugeta.mediaplayer.di.component.DaggerViewComponent
-import com.cmulugeta.mediaplayer.di.module.PresenterModule
 import com.cmulugeta.mediaplayer.domain.model.Track
 import com.cmulugeta.mediaplayer.ui.base.BaseActivity
 import kotlinx.android.synthetic.main.fragment_actions.*
@@ -16,14 +14,13 @@ import android.content.Intent
 import com.google.gson.reflect.TypeToken
 import com.cmulugeta.mediaplayer.ui.utils.*
 import android.annotation.SuppressLint
-import com.cmulugeta.mediaplayer.App
 import com.cmulugeta.mediaplayer.domain.model.TrackType
 import com.cmulugeta.mediaplayer.then
-import javax.inject.Inject
+import org.koin.android.ext.android.inject
 
 class ActionsActivity : BaseActivity(), ActionsContract.View {
 
-  private lateinit var presenter: ActionsContract.Presenter
+  private val presenter: ActionsContract.Presenter by inject()
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
@@ -108,16 +105,5 @@ class ActionsActivity : BaseActivity(), ActionsContract.View {
     artist.text = track.artist
     song.text = track.title
     duration.text = "\u2022 ${track.formattedDuration}"
-  }
-
-  override fun inject() = DaggerViewComponent.builder()
-      .presenterModule(PresenterModule())
-      .applicationComponent(App.component)
-      .build().inject(this)
-
-  @Inject
-  override fun attach(presenter: ActionsContract.Presenter) {
-    this.presenter = presenter
-    presenter.attach(this)
   }
 }

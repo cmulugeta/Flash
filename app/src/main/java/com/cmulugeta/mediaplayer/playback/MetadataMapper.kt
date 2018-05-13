@@ -3,12 +3,8 @@ package com.cmulugeta.mediaplayer.playback
 import android.support.v4.media.MediaMetadataCompat
 import com.cmulugeta.mediaplayer.data.mapper.Mapper
 import com.cmulugeta.mediaplayer.domain.model.Track
-import com.cmulugeta.mediaplayer.domain.playback.PlaybackScope
-import javax.inject.Inject
 
-@PlaybackScope
-class MetadataMapper @Inject
-constructor() : Mapper<MediaMetadataCompat, Track>() {
+class MetadataMapper : Mapper<MediaMetadataCompat, Track>() {
   override fun map(fake: Track?): MediaMetadataCompat? {
     return fake?.let {
       MediaMetadataCompat.Builder()

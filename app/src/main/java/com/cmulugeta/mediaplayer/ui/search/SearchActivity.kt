@@ -6,8 +6,6 @@ import android.os.Bundle
 import android.text.InputType
 import android.view.View
 import com.cmulugeta.mediaplayer.R
-import com.cmulugeta.mediaplayer.di.component.DaggerViewComponent
-import com.cmulugeta.mediaplayer.di.module.PresenterModule
 import com.cmulugeta.mediaplayer.ui.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_search.*
 import android.view.inputmethod.EditorInfo
@@ -16,7 +14,6 @@ import android.widget.SearchView
 import android.content.Intent
 import android.app.SharedElementCallback
 import com.cmulugeta.kotlin_extensions.then
-import com.cmulugeta.mediaplayer.App
 
 class SearchActivity : BaseActivity() {
 
@@ -87,12 +84,5 @@ class SearchActivity : BaseActivity() {
       val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
       imm.hideSoftInputFromWindow(view.windowToken, 0)
     }
-  }
-
-  override fun inject() {
-    DaggerViewComponent.builder()
-        .presenterModule(PresenterModule())
-        .applicationComponent(App.component)
-        .build().inject(this)
   }
 }
