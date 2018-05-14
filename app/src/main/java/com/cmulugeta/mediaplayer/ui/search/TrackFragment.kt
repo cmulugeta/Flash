@@ -1,17 +1,16 @@
 package com.cmulugeta.mediaplayer.ui.search
 
+import com.cmulugeta.mediaplayer.di.Params
 import com.cmulugeta.mediaplayer.domain.model.Track
+import com.cmulugeta.mediaplayer.injectWith
 import com.cmulugeta.mediaplayer.ui.base.BaseAdapter
-import com.cmulugeta.mediaplayer.ui.base.Navigator
 import com.cmulugeta.mediaplayer.ui.home.TrackAdapter
-import org.koin.android.ext.android.inject
 
 class TrackFragment : SearchFragment<Track>() {
-  override var presenter: SearchContract.Presenter<Track>? = null
+  override val presenter: SearchContract.Presenter<Track> by injectWith(Params.SEARCH)
 
-  private val navigator: Navigator by inject()
-
-  override val adapter: BaseAdapter<Track> by lazy(LazyThreadSafetyMode.NONE) {
-    TrackAdapter(context, { navigator.navigate(activity, it) }, { navigator.actions(activity, it) })
+  override val adapter: BaseAdapter<Track> by lazy {
+    TrackAdapter(context!!, { navigator.navigate(activity!!, it) },
+        { navigator.actions(activity!!, it) })
   }
 }

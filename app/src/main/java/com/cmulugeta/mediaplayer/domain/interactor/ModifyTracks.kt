@@ -5,7 +5,10 @@ import com.cmulugeta.mediaplayer.domain.executor.BaseScheduler
 import com.cmulugeta.mediaplayer.domain.model.TrackType
 import com.cmulugeta.mediaplayer.domain.interactor.params.ModifyRequest
 
-class ModifyTracks(val repository: Repository, val scheduler: BaseScheduler) : ModifyInteractor {
+class ModifyTracks(
+    private val repository: Repository,
+    private val scheduler: BaseScheduler
+) : ModifyInteractor {
 
   override fun insert(success: () -> Unit, error: (Throwable) -> Unit, request: ModifyRequest) {
     repository.insert(request)

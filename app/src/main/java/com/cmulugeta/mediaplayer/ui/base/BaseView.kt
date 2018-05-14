@@ -1,4 +1,5 @@
 package com.cmulugeta.mediaplayer.ui.base
 
-interface BaseView<in T : BasePresenter> {
+interface BaseView<out T : BasePresenter> {
+  val presenter: T
 }

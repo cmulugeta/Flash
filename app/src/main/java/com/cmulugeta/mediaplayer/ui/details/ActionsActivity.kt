@@ -14,13 +14,14 @@ import android.content.Intent
 import com.google.gson.reflect.TypeToken
 import com.cmulugeta.mediaplayer.ui.utils.*
 import android.annotation.SuppressLint
+import com.cmulugeta.mediaplayer.di.Params
 import com.cmulugeta.mediaplayer.domain.model.TrackType
+import com.cmulugeta.mediaplayer.injectWith
 import com.cmulugeta.mediaplayer.then
-import org.koin.android.ext.android.inject
 
 class ActionsActivity : BaseActivity(), ActionsContract.View {
 
-  private val presenter: ActionsContract.Presenter by inject()
+  override val presenter: ActionsContract.Presenter by injectWith(Params.ACTIONS)
 
   override fun onCreate(savedInstanceState: Bundle?) {
     super.onCreate(savedInstanceState)
