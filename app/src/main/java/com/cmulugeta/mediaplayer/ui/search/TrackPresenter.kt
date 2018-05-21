@@ -1,7 +1,8 @@
 package com.cmulugeta.mediaplayer.ui.search
 
-import com.cmulugeta.kotlin_extensions.error
 import com.cmulugeta.mediaplayer.domain.interactor.SingleInteractor
+import com.cmulugeta.mediaplayer.domain.model.Connection
+import com.cmulugeta.mediaplayer.domain.model.RequestError
 import com.cmulugeta.mediaplayer.domain.model.SearchPage
 import com.cmulugeta.mediaplayer.domain.model.Track
 
@@ -37,9 +38,10 @@ class TrackPresenter (
       view.appendResult(result)
   }
 
-  private fun onError(throwable: Throwable) {
-    throwable.printStackTrace()
-    error(throwable.message)
+  private fun onError(error: RequestError) {
+    when(error) {
+      is Connection-> view.onConnectionError()
+    }
     view.hideLoading()
   }
 

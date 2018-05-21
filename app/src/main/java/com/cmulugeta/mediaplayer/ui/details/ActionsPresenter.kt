@@ -4,6 +4,7 @@ import com.cmulugeta.mediaplayer.domain.model.Track
 import com.cmulugeta.mediaplayer.ui.details.ActionsContract.Presenter
 import com.cmulugeta.mediaplayer.domain.interactor.ModifyInteractor
 import com.cmulugeta.mediaplayer.domain.interactor.params.ModifyRequest
+import com.cmulugeta.mediaplayer.domain.model.RequestError
 import com.cmulugeta.mediaplayer.domain.model.TrackType
 
 class ActionsPresenter (
@@ -31,8 +32,7 @@ class ActionsPresenter (
     modifier.insert({ view.showAdded(TrackType.Favorite) }, this::error, param)
   }
 
-  private fun error(ex: Throwable) {
+  private fun error(ex: RequestError) {
     view.error()
-    ex.printStackTrace()
   }
 }

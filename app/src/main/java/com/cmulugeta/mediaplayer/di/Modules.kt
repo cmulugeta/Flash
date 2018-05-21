@@ -12,6 +12,7 @@ import com.cmulugeta.mediaplayer.data.mapper.TrackMapper
 import com.cmulugeta.mediaplayer.domain.Repository
 import com.cmulugeta.mediaplayer.domain.executor.BaseScheduler
 import com.cmulugeta.mediaplayer.domain.executor.SchedulerProvider
+import com.cmulugeta.mediaplayer.domain.interactor.ErrorHandler
 import com.cmulugeta.mediaplayer.domain.interactor.GetTracks
 import com.cmulugeta.mediaplayer.domain.interactor.ModifyTracks
 import com.cmulugeta.mediaplayer.domain.interactor.SearchTracks
@@ -39,6 +40,7 @@ val general = applicationContext {
 }
 
 val dataProviders = applicationContext {
+  bean { ErrorHandler() }
   bean { Filter() }
   bean { MusicDatabase(get()) }
   bean { TrackHandler(get<MusicDatabase>()) }
@@ -62,9 +64,9 @@ val mappers = applicationContext {
 }
 
 val presenters = applicationContext {
-  bean { ModifyTracks(get(), get()) }
-  bean { SearchTracks(get(), get()) }
-  bean { GetTracks(get(), get()) }
+  bean { ModifyTracks(get(), get(), get()) }
+  bean { SearchTracks(get(), get(), get()) }
+  bean { GetTracks(get(), get(), get()) }
 
   factory(Params.HISTORY) { arguments ->
     HistoryPresenter(get<GetTracks>(),

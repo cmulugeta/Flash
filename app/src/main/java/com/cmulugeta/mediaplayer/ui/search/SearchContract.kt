@@ -1,6 +1,5 @@
 package com.cmulugeta.mediaplayer.ui.search
 
-import android.support.annotation.StringRes
 import com.cmulugeta.mediaplayer.ui.base.BasePresenter
 import com.cmulugeta.mediaplayer.ui.base.BaseView
 
@@ -12,7 +11,6 @@ interface SearchContract {
     fun hideRefreshing()
     fun showResult(list: List<T>)
     fun appendResult(list: List<T>)
-    fun showMessage(@StringRes id: Int)
     fun error()
     fun empty()
   }
