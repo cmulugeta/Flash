@@ -4,6 +4,7 @@ import android.content.Context
 import android.media.AudioManager
 import android.net.wifi.WifiManager
 import com.cmulugeta.mediaplayer.CLIENT_ID
+import com.cmulugeta.mediaplayer.data.AppPreferences
 import com.cmulugeta.mediaplayer.data.Filter
 import com.cmulugeta.mediaplayer.data.MusicRepository
 import com.cmulugeta.mediaplayer.data.local.MusicDatabase
@@ -12,10 +13,7 @@ import com.cmulugeta.mediaplayer.data.mapper.TrackMapper
 import com.cmulugeta.mediaplayer.domain.Repository
 import com.cmulugeta.mediaplayer.domain.executor.BaseScheduler
 import com.cmulugeta.mediaplayer.domain.executor.SchedulerProvider
-import com.cmulugeta.mediaplayer.domain.interactor.ErrorHandler
-import com.cmulugeta.mediaplayer.domain.interactor.GetTracks
-import com.cmulugeta.mediaplayer.domain.interactor.ModifyTracks
-import com.cmulugeta.mediaplayer.domain.interactor.SearchTracks
+import com.cmulugeta.mediaplayer.domain.interactor.*
 import com.cmulugeta.mediaplayer.domain.model.Track
 import com.cmulugeta.mediaplayer.domain.playback.Playback
 import com.cmulugeta.mediaplayer.playback.MediaPlayback21
@@ -41,8 +39,9 @@ val general = applicationContext {
 
 val dataProviders = applicationContext {
   bean { ErrorHandler() }
-  bean { Filter() }
+  bean { Filter(get()) }
   bean { MusicDatabase(get()) }
+  bean { AppPreferences() } bind PreferencesInteractor::class
   bean { TrackHandler(get<MusicDatabase>()) }
   bean {
     MusicRepository(get<TrackMapper>(), get(),
